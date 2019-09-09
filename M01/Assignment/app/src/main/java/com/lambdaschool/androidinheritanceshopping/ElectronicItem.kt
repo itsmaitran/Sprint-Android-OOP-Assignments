@@ -2,11 +2,13 @@ package com.lambdaschool.androidinheritanceshopping
 
 import com.lambdaschool.androidinheritanceshopping.model.ShoppingItem
 
-class ElectronicItem protected constructor(colorId: Int, productName: String) : ShoppingItem(colorId, productName) {
+class ElectronicItem (productName: String, var storeName: String, var itemPrice: Double) : ShoppingItem(colorId, productName) {
 
-    constructor(productName: String) : this(R.color.colorElectronicItem, productName)
+    companion object {
+        private val colorId = R.color.colorElectronicItem
+    }
 
     override fun getDisplayName(): String {
-        return "$productName:\n Store:$storeName\n Warranty:$itemWarranty"
+        return "$productName:\n Store:$storeName\n Price: $$itemPrice"
     }
 }
