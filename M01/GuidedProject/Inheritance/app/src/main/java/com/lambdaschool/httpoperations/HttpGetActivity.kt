@@ -1,8 +1,8 @@
 package com.lambdaschool.httpoperations
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableStringBuilder
+import android.util.Log
 import android.view.View
 import androidx.core.text.bold
 import com.lambdaschool.httpoperations.model.Employee
@@ -12,15 +12,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HttpGetActivity : AppCompatActivity() {
-
-    lateinit var jsonPlaceHolderApi: JsonPlaceHolderApi
+class HttpGetActivity : HttpActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_http_get)
-        jsonPlaceHolderApi = JsonPlaceHolderApi.Factory.create()
+        Log.i("HttpGetActivity", "in onCreate")
         val type = intent.getStringExtra("get")
+        jsonPlaceHolderApi = JsonPlaceHolderApi.Factory.create()
         if (type == "simple") {
             title = "GET - Simple Request"
             getEmployees()
@@ -38,8 +37,7 @@ class HttpGetActivity : AppCompatActivity() {
         jsonPlaceHolderApi.getEmployees().enqueue(object : Callback<List<Employee>>{
 
             override fun onFailure(call: Call<List<Employee>>, throwable: Throwable) {
-                progressBar.visibility = View.GONE
-                result.text = throwable.toString()
+                this@HttpGetActivity.onFailure(throwable)
             }
 
             override fun onResponse(call: Call<List<Employee>>, response: Response<List<Employee>>) {
@@ -51,14 +49,17 @@ class HttpGetActivity : AppCompatActivity() {
                     val content = SpannableStringBuilder()
                     employees?.forEach { employee ->
                         content
-                            .bold { append("Name: ") }
-                            .append(employee.name).append("\n")
-                            .bold { append("Id: ") }
-                            .append(employee.id.toString()).append("\n")
-                            .bold { append("Age: ") }
-                            .append(employee.age.toString()).append("\n")
-                            .bold { append("Title: ") }
-                            .append(employee.title).append("\n").append("\n")
+                            .bold { append(employee.signature()) }
+                            .append("${employee is Employee}\n")
+                            .append("\n")
+//                            .bold { append("Name: ") }
+//                            .append(employee.name).append("\n")
+//                            .bold { append("Id: ") }
+//                            .append(employee.id.toString()).append("\n")
+//                            .bold { append("Age: ") }
+//                            .append(employee.age.toString()).append("\n")
+//                            .bold { append("Title: ") }
+//                            .append(employee.title).append("\n").append("\n")
                     }
                     result.text = content
                 }
@@ -70,8 +71,7 @@ class HttpGetActivity : AppCompatActivity() {
         jsonPlaceHolderApi.getEmployees(employeeId).enqueue(object : Callback<List<Employee>>{
 
             override fun onFailure(call: Call<List<Employee>>, throwable: Throwable) {
-                progressBar.visibility = View.GONE
-                result.text = throwable.toString()
+                this@HttpGetActivity.onFailure(throwable)
             }
 
             override fun onResponse(call: Call<List<Employee>>, response: Response<List<Employee>>) {
@@ -83,14 +83,16 @@ class HttpGetActivity : AppCompatActivity() {
                     val content = SpannableStringBuilder()
                     employees?.forEach { employee ->
                         content
-                            .bold { append("Name: ") }
-                            .append(employee.name).append("\n")
-                            .bold { append("Id: ") }
-                            .append(employee.id.toString()).append("\n")
-                            .bold { append("Age: ") }
-                            .append(employee.age.toString()).append("\n")
-                            .bold { append("Title: ") }
-                            .append(employee.title).append("\n").append("\n")
+                            .bold { append(employee.signature()) }
+                            .append("\n")
+//                            .bold { append("Name: ") }
+//                            .append(employee.name).append("\n")
+//                            .bold { append("Id: ") }
+//                            .append(employee.id.toString()).append("\n")
+//                            .bold { append("Age: ") }
+//                            .append(employee.age.toString()).append("\n")
+//                            .bold { append("Title: ") }
+//                            .append(employee.title).append("\n").append("\n")
                     }
                     result.text = content
                 }
@@ -102,8 +104,7 @@ class HttpGetActivity : AppCompatActivity() {
         jsonPlaceHolderApi.getEmployeesForAge(age).enqueue(object : Callback<List<Employee>>{
 
             override fun onFailure(call: Call<List<Employee>>, throwable: Throwable) {
-                progressBar.visibility = View.GONE
-                result.text = throwable.toString()
+                this@HttpGetActivity.onFailure(throwable)
             }
 
             override fun onResponse(call: Call<List<Employee>>, response: Response<List<Employee>>) {
@@ -116,14 +117,16 @@ class HttpGetActivity : AppCompatActivity() {
                     // TODO 9: Return the signature here instead of the name, id, etc.
                     employees?.forEach { employee ->
                         content
-                            .bold { append("Name: ") }
-                            .append(employee.name).append("\n")
-                            .bold { append("Id: ") }
-                            .append(employee.id.toString()).append("\n")
-                            .bold { append("Age: ") }
-                            .append(employee.age.toString()).append("\n")
-                            .bold { append("Title: ") }
-                            .append(employee.title).append("\n").append("\n")
+                            .bold { append(employee.signature()) }
+                            .append("\n")
+//                                append("Name: ") }
+//                            .append(employee.name).append("\n")
+//                            .bold { append("Id: ") }
+//                            .append(employee.id.toString()).append("\n")
+//                            .bold { append("Age: ") }
+//                            .append(employee.age.toString()).append("\n")
+//                            .bold { append("Title: ") }
+//                            .append(employee.title).append("\n").append("\n")
                     }
                     result.text = content
                 }
