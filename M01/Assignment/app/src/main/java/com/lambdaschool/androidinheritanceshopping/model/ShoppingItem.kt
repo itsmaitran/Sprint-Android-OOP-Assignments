@@ -5,7 +5,6 @@ package com.lambdaschool.androidinheritanceshopping.model
 // The class's constructor should be protected
 open class ShoppingItem protected constructor (val colorId: Int, val productName: String) {
     // Write a method for the class called getDisplayName which will return a string in this case, just the product name
-
     open fun getDisplayName(): String {
         return productName
     }
