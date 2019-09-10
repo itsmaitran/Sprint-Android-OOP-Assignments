@@ -3,8 +3,8 @@ package com.lambdaschool.interfaces.model
 import java.io.Serializable
 
 abstract class Vehicle(
-    open val id: String? = null,
-    open val weight: Int? = null,
+    open val id: String,
+    open val weight: Int,
     open val favorite: Boolean = false
 
 ) : Serializable {
