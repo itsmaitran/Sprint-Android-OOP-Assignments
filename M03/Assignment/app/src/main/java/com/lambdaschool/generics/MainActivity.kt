@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
         val verizonPhone = Phone<CellularService>(verizon)
         val tMobilePhone = Phone<CellularService>(tMobile)
 
-// TODO: Task 7
+// Task 7:
 //    Steps:
 //    1. Create an observable that emits 3 objects of type Int
 //    2. To finish this task, you will need to import rxjava, rxAndroid dependencies using gradle.
@@ -106,10 +106,20 @@ class MainActivity : AppCompatActivity() {
             println(Int)
         }
 
-// TODO: Task 8
+// Task 8:
 //    Steps:
 //    1. Create an observable that emits objects of a custom data class Actor
 //    2. To finish this task, create two actors Tom Cruise, Brad Pitt and return these objects using an observable.
+
+        open class Actor
+        class TomCruise: Actor()
+        class BradPitt: Actor()
+
+        val actorObservable = Observable.just(TomCruise(), BradPitt())
+
+        actorObservable.subscribe() {actor ->
+            println("The observable returned $actor")
+        }
 
 // TODO: Task 9
 //    Steps:
