@@ -3,6 +3,7 @@ package com.lambdaschool.generics
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import io.reactivex.Observable
 
 class MainActivity : AppCompatActivity() {
 
@@ -98,6 +99,12 @@ class MainActivity : AppCompatActivity() {
 //    Steps:
 //    1. Create an observable that emits 3 objects of type Int
 //    2. To finish this task, you will need to import rxjava, rxAndroid dependencies using gradle.
+
+        val observable = Observable.just(0, 1, 2)
+
+        observable.subscribe() {int ->
+            println(Int)
+        }
 
 // TODO: Task 8
 //    Steps:
