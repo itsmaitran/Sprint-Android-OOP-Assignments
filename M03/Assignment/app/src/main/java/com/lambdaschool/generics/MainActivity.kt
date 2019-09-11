@@ -23,14 +23,28 @@ class MainActivity : AppCompatActivity() {
             "Madagascar Dragon Tree",
             "Maidenhair Fern",
             "Snake Plant",
-            "Umbrella Plant"
+            "Umbrella Plant",
+            "Air Plant"
         )
-        plantList.add("Air Plant")
+        plantList.add(0.toString())
 
-// TODO: Task 2
+//Task 2
 //    Steps:
 //    1. Create a class that accepts a particular type.
 //    2. Define the class and the type and see what happens when you pass an object that is of type other than the given one.
+
+        class Plants<P> {
+
+            private var plants: P? = null
+            fun put(p: P) {
+                plants = p
+            }
+
+            fun get(): P? {
+                return plants
+            }
+
+        }
 
 // TODO: Task 3
 //    Steps:
