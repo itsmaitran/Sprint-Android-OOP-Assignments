@@ -67,8 +67,10 @@ class MainActivity : AppCompatActivity() {
             super.onStart()
             val housePlantList = plantList("Snake Plant")
             val myPlantList = plantList(0)
-            Toast.makeText(this, "Our house plant list contains ${housePlantList[0]}.\n " +
-                    "My plant list contains ${myPlantList[0]}.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this, "Our house plant list contains ${housePlantList[0]}.\n " +
+                        "My plant list contains ${myPlantList[0]}.", Toast.LENGTH_SHORT
+            ).show()
         }
 
 // Task 5:
@@ -77,15 +79,15 @@ class MainActivity : AppCompatActivity() {
 //    2. To finish this task 5, create a class Phone that only accepts objects of type CellularService.
 
         open class CellularService
-        class Phone<T: CellularService>(private var service: CellularService)
+        class Phone<T : CellularService>(private var service: CellularService)
 
 // Task 6:
 //    Steps:
 //    1. Enforce restricted types for a class to related types of objects.
 //    2. To finish task 6, after task 5, refactor class Phone so that it can accept two types of CellularService like TMobile and Verizon.
 
-        class Verizon: CellularService()
-        class TMobile: CellularService()
+        class Verizon : CellularService()
+        class TMobile : CellularService()
 
         val cellularService = CellularService()
         val verizon = Verizon()
@@ -102,7 +104,7 @@ class MainActivity : AppCompatActivity() {
 
         val observable = Observable.just(0, 1, 2)
 
-        observable.subscribe() {int ->
+        observable.subscribe() { int ->
             println(Int)
         }
 
@@ -112,18 +114,34 @@ class MainActivity : AppCompatActivity() {
 //    2. To finish this task, create two actors Tom Cruise, Brad Pitt and return these objects using an observable.
 
         open class Actor
-        class TomCruise: Actor()
-        class BradPitt: Actor()
+        class TomCruise : Actor()
+        class BradPitt : Actor()
 
         val actorObservable = Observable.just(TomCruise(), BradPitt())
 
-        actorObservable.subscribe() {actor ->
+        actorObservable.subscribe() { actor ->
             println("The observable returned $actor")
         }
+    }
 
-// TODO: Task 9
+// Task 9:
 //    Steps:
 //    1. Create a dummy network API like the one in the guided project to return four movies with custom attributes such as year of release, title, language, imdb rating (feel free to be creative here!, you will need to create a data class for Movie to start this task)
 //    2. Make a call to this NetworkAPI to fetch the movie data and then observe the response and print it to the console.
+
+    data class Movie(val title: String, val releaseDate: Int, val genre: String, val rating: String)
+
+    class NetworkAPI {
+        companion object {
+
+            fun getMovieList(): Observable<List<Movie>> {
+                return Observable.just(listOf(
+                    Movie("It Chapter Two", 2019, "Drama, Fantasy, Horror", "7.1/10"),
+                    Movie("Angel Has Fallen", 2019, "Action, Thriller", "6.7/10"),
+                    Movie("Good Boys", 2019, "Adventure, Comedy", "6.9/10"),
+                    Movie("The Lion King", 2019, "Animation, Adventure, Drama","7.1/10")
+                ))
+            }
+        }
     }
 }
