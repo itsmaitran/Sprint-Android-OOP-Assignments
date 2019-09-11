@@ -70,18 +70,29 @@ class MainActivity : AppCompatActivity() {
                     "My plant list contains ${myPlantList[0]}.", Toast.LENGTH_SHORT).show()
         }
 
-// Task 5
+// Task 5:
 //    Steps:
 //    1. Enforce Generic Constraints by creating a class and denoting the type of objects it can hold.
 //    2. To finish this task 5, create a class Phone that only accepts objects of type CellularService.
 
-        open class CelluarService
-        class Phone<T: CelluarService>(private var service: CelluarService)
-        
-// TODO: Task 6
+        open class CellularService
+        class Phone<T: CellularService>(private var service: CellularService)
+
+// Task 6:
 //    Steps:
 //    1. Enforce restricted types for a class to related types of objects.
 //    2. To finish task 6, after task 5, refactor class Phone so that it can accept two types of CellularService like TMobile and Verizon.
+
+        class Verizon: CellularService()
+        class TMobile: CellularService()
+
+        val cellularService = CellularService()
+        val verizon = Verizon()
+        val tMobile = TMobile()
+
+        val cellularServicePhone = Phone<CellularService>(cellularService)
+        val verizonPhone = Phone<CellularService>(verizon)
+        val tMobilePhone = Phone<CellularService>(tMobile)
 
 // TODO: Task 7
 //    Steps:
