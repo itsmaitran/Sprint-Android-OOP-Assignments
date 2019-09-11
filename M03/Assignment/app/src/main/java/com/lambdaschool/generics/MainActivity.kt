@@ -2,6 +2,7 @@ package com.lambdaschool.generics
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,12 +12,13 @@ class MainActivity : AppCompatActivity() {
 
 // Task 1:
 //    Steps:
-//    1. Create a simple example of a mutableList that takes strings as parameters.
-//    2. Try adding an integer to the list and see what happens and fix any potential issues. / If adding integer do "0.toString()"
+//    1. Create a simple example of a mutableList that takes strings as parameters
+//    2. Try adding an integer to the list and see what happens and fix any potential issues
+//    Cannot add an integer to the list. If absoulte need to add an integer, the workaround would be "0.toString()"
 
         val plantList = mutableListOf(
             "Fiddleleaf Fig",
-            "String of Pears",
+            "String of Pearls",
             "String of Bananas",
             "Pothos",
             "Zee Zee Plant",
@@ -27,10 +29,10 @@ class MainActivity : AppCompatActivity() {
         )
         plantList.add("Air Plant")
 
-// Task 2
+// Task 2:
 //    Steps:
-//    1. Create a class that accepts a particular type.
-//    2. Define the class and the type and see what happens when you pass an object that is of type other than the given one.
+//    1. Create a class that accepts a particular type
+//    2. Define the class and the type and see what happens when you pass an object that is of type other than the given one
 
         class Plants<P> {
 
@@ -44,10 +46,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-// Task 3
+// Task 3:
 //    Steps:
 //    1. Create a Function that can specify the type of arguments it can accept
-//    2. Check to see what happens if you pass on object that is not of this type.
+//    2. Check to see what happens if you pass an object that is not of this type
 
         fun <P> plantList(p: P): List<P> {
             val theList = mutableListOf<P>()
@@ -55,10 +57,19 @@ class MainActivity : AppCompatActivity() {
             return theList
         }
 
-// TODO: Task 4
+// Task 4:
 //    Steps:
 //    1. Create a function that returns a certain type
 //    2. Expose this function to another class which can then directly call this function and retrive the object returned by the function
+
+        fun onStart() {
+            super.onStart()
+            val housePlantList = plantList("Snake Plant")
+            val myPlantList = plantList(0)
+            Toast.makeText(this, "Our house plant list contains ${housePlantList[0]}.\n " +
+                    "My plant list contains ${myPlantList[0]}", Toast.LENGTH_SHORT).show()
+        }
+
 
 // TODO: Task 5
 //    Steps:
