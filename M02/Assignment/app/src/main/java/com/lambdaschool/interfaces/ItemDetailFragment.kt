@@ -19,7 +19,7 @@ class ItemDetailFragment : Fragment() {
 
         arguments?.let {
             if (it.containsKey(ARG_ITEM_ID)) {
-                item = VehicleList.vehicles[it.getInt(ARG_ITEM_ID)]
+                item = VehicleList.vehicles_map[it.getString(ARG_ITEM_ID)]
 
                 activity?.toolbar_layout?.let { layout ->
                     layout.title = item?.id
