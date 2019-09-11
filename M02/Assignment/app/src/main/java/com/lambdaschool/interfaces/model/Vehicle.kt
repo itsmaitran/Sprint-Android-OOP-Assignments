@@ -5,7 +5,7 @@ import java.io.Serializable
 abstract class Vehicle(
     open val id: String,
     open val weight: Int,
-    open val favorite: Boolean = false
+    open var favorite: Boolean = false
 
 ) : Serializable {
 
