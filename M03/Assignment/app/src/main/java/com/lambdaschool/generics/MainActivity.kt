@@ -67,15 +67,17 @@ class MainActivity : AppCompatActivity() {
             val housePlantList = plantList("Snake Plant")
             val myPlantList = plantList(0)
             Toast.makeText(this, "Our house plant list contains ${housePlantList[0]}.\n " +
-                    "My plant list contains ${myPlantList[0]}", Toast.LENGTH_SHORT).show()
+                    "My plant list contains ${myPlantList[0]}.", Toast.LENGTH_SHORT).show()
         }
 
-
-// TODO: Task 5
+// Task 5
 //    Steps:
 //    1. Enforce Generic Constraints by creating a class and denoting the type of objects it can hold.
 //    2. To finish this task 5, create a class Phone that only accepts objects of type CellularService.
 
+        open class CelluarService
+        class Phone<T: CelluarService>(private var service: CelluarService)
+        
 // TODO: Task 6
 //    Steps:
 //    1. Enforce restricted types for a class to related types of objects.
