@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 // Task 1:
 //    Steps:
 //    1. Create a simple example of a mutableList that takes strings as parameters.
-//    2. Try adding an integer to the list and see what happens and fix any potential issues.
+//    2. Try adding an integer to the list and see what happens and fix any potential issues. / If adding integer do "0.toString()"
 
         val plantList = mutableListOf(
             "Fiddleleaf Fig",
@@ -23,12 +23,11 @@ class MainActivity : AppCompatActivity() {
             "Madagascar Dragon Tree",
             "Maidenhair Fern",
             "Snake Plant",
-            "Umbrella Plant",
-            "Air Plant"
+            "Umbrella Plant"
         )
-        plantList.add(0.toString())
+        plantList.add("Air Plant")
 
-//Task 2
+// Task 2
 //    Steps:
 //    1. Create a class that accepts a particular type.
 //    2. Define the class and the type and see what happens when you pass an object that is of type other than the given one.
@@ -43,13 +42,18 @@ class MainActivity : AppCompatActivity() {
             fun get(): P? {
                 return plants
             }
-
         }
 
-// TODO: Task 3
+// Task 3
 //    Steps:
 //    1. Create a Function that can specify the type of arguments it can accept
 //    2. Check to see what happens if you pass on object that is not of this type.
+
+        fun <P> plantList(p: P): List<P> {
+            val theList = mutableListOf<P>()
+            theList.add(p)
+            return theList
+        }
 
 // TODO: Task 4
 //    Steps:
