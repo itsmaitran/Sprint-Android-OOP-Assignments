@@ -1,4 +1,4 @@
-package com.lambdaschool.pokemonapi.ui
+package com.lambdaschool.pokemonapi.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

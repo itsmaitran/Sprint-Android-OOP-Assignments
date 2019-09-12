@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.lambdaschool.pokemonapi.Constants
 import com.lambdaschool.pokemonapi.R
-import com.lambdaschool.pokemonapi.ui.ViewPokemonActivity
+import com.lambdaschool.pokemonapi.view.ViewPokemonActivity
 import com.lambdaschool.pokemonapi.model.PokemonData
 import kotlinx.android.synthetic.main.pokemon_list_item.view.*
 

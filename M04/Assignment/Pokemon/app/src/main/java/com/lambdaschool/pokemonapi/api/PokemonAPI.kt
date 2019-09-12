@@ -1,4 +1,4 @@
-package com.lambdaschool.pokemonapi.retrofit
+package com.lambdaschool.pokemonapi.api
 
 import com.google.gson.GsonBuilder
 import com.lambdaschool.pokemonapi.model.JSONPokemon
