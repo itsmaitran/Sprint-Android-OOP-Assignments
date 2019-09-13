@@ -23,8 +23,9 @@ class MainActivity : AppCompatActivity(), Callback<JSONPokemon> {
 
     companion object{
         var pokemonViewModel: PokemonData? = null
-        val pokemonList = mutableListOf<PokemonData>()
     }
+
+    val pokemonList = mutableListOf<PokemonData>()
 
     lateinit var pokemonAPI: PokemonAPI
 
