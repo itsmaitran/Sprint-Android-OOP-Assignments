@@ -10,6 +10,10 @@ import kotlinx.android.synthetic.main.activity_view_pokemon.*
 
 class ViewPokemonActivity : AppCompatActivity() {
 
+    companion object {
+        val pokemonList = ArrayList<PokemonData>()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_pokemon)

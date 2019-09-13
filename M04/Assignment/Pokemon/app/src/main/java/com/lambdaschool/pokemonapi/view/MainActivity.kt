@@ -18,7 +18,11 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), Callback<JSONPokemon> {
 
-    val pokemonList = mutableListOf<PokemonData>()
+    companion object{
+        var pokemonViewModel: PokemonData? = null
+        val pokemonList = mutableListOf<PokemonData>()
+    }
+
     lateinit var pokemonAPI: PokemonAPI
 
     override fun onFailure(call: Call<JSONPokemon>, t: Throwable) {
