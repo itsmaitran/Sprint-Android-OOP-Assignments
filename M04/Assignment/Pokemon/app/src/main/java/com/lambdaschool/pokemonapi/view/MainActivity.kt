@@ -1,0 +1,95 @@
+package com.lambdaschool.pokemonapi.view
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.lambdaschool.pokemonapi.Constants.POKEMON_INTENT_KEY
+import com.lambdaschool.pokemonapi.R
+import com.lambdaschool.pokemonapi.adapter.RecyclerViewAdapter
+import com.lambdaschool.pokemonapi.model.JSONPokemon
+import com.lambdaschool.pokemonapi.model.PokemonData
+import com.lambdaschool.pokemonapi.api.PokemonAPI
+import com.lambdaschool.pokemonapi.databinding.ActivityMainBinding
+import com.lambdaschool.pokemonapi.viewmodel.PokemonViewModel
+import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class MainActivity : AppCompatActivity(), Callback<JSONPokemon> {
+
+    companion object{
+        var pokemonViewModel: PokemonData? = null
+    }
+
+    val pokemonList = mutableListOf<PokemonData>()
+
+    lateinit var pokemonAPI: PokemonAPI
+
+    override fun onFailure(call: Call<JSONPokemon>, t: Throwable) {
+        t.printStackTrace()
+        val response = "Failure; ${t.printStackTrace()}"
+        Toast.makeText(this@MainActivity, response, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onResponse(call: Call<JSONPokemon>, response: Response<JSONPokemon>) {
+        if (response.isSuccessful) {
+            val jsonPokemon = response.body() as JSONPokemon
+            val abilities = mutableListOf<String>()
+            jsonPokemon.abilities.forEach {
+                abilities.add(it.ability.name)
+            }
+
+            val types = mutableListOf<String>()
+            jsonPokemon.types.forEach {
+                types.add(it.type.name)
+            }
+
+            val pokemonData = PokemonData(
+                jsonPokemon.name,
+                jsonPokemon.sprites.front_default,
+                jsonPokemon.id,
+                abilities,
+                types
+            )
+
+            pokemonList.add(pokemonData)
+            rv_list.adapter!!.notifyDataSetChanged()
+
+            val intent = Intent(this, ViewPokemonActivity::class.java)
+            pokemonViewModel = pokemonData
+            intent.putExtra(POKEMON_INTENT_KEY, pokemonData)
+            startActivity(intent)
+
+        } else {
+            val response = "Response not successful; ${response.errorBody().toString()}"
+            Toast.makeText(this@MainActivity, response, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun searchPokemon(nameOrId: String) {
+        pokemonAPI.getPokemon(nameOrId).enqueue(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val activityMainBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this,R.layout.activity_main)
+        activityMainBinding.viewModel = PokemonViewModel(this)
+        activityMainBinding.executePendingBindings()
+
+        pokemonAPI = PokemonAPI.create()
+
+        rv_list.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = RecyclerViewAdapter(pokemonList)
+        }
+
+        iv_search.setOnClickListener {
+            val pokemonText = et_search.text.toString()
+            searchPokemon(pokemonText)
+        }
+    }
+}
