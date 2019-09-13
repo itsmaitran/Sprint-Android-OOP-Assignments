@@ -12,6 +12,7 @@ import com.lambdaschool.pokemonapi.adapter.RecyclerViewAdapter
 import com.lambdaschool.pokemonapi.model.JSONPokemon
 import com.lambdaschool.pokemonapi.model.PokemonData
 import com.lambdaschool.pokemonapi.api.PokemonAPI
+import com.lambdaschool.pokemonapi.databinding.ActivityMainBinding
 import com.lambdaschool.pokemonapi.viewmodel.PokemonViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
@@ -76,7 +77,7 @@ class MainActivity : AppCompatActivity(), Callback<JSONPokemon> {
         val activityMainBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this,R.layout.activity_main)
         activityMainBinding.viewModel = PokemonViewModel(this)
         activityMainBinding.executePendingBindings()
-        
+
         pokemonAPI = PokemonAPI.create()
 
         rv_list.apply {
