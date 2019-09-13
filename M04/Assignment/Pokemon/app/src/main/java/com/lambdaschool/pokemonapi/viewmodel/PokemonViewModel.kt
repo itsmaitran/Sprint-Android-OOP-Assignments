@@ -32,12 +32,12 @@ class PokemonViewModel(context: Context) : BaseObservable(), Callback<JSONPokemo
 
     @Bindable
     fun getPokemonName(): String? {
-        return MainActivity.pokemonViewModel?.name
+        return pokemonViewModel?.name
     }
 
     @Bindable
     fun getPokemonId(): String? {
-        val id = MainActivity.pokemonViewModel?.id.toString()
+        val id = pokemonViewModel?.id.toString()
         return "Pokemon ID: $id"
     }
 
@@ -47,8 +47,8 @@ class PokemonViewModel(context: Context) : BaseObservable(), Callback<JSONPokemo
     }
 
     fun onSearchClicked() {
-        ViewPokemonActivity.pokemonList.add(MainActivity.pokemonViewModel!!)
-        println(MainActivity.pokemonViewModel)
+        ViewPokemonActivity.pokemonList.add(pokemonViewModel!!)
+        println(pokemonViewModel)
         startActivity(context, Intent(context, MainActivity::class.java), null)
     }
 }

@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity(), Callback<JSONPokemon> {
             rv_list.adapter!!.notifyDataSetChanged()
 
             val intent = Intent(this, ViewPokemonActivity::class.java)
+            pokemonViewModel = pokemonData
             intent.putExtra(POKEMON_INTENT_KEY, pokemonData)
             startActivity(intent)
 
