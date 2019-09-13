@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import androidx.databinding.library.baseAdapters.BR
 import com.lambdaschool.pokemonapi.model.JSONPokemon
 import com.lambdaschool.pokemonapi.view.MainActivity
 import com.lambdaschool.pokemonapi.view.ViewPokemonActivity
@@ -32,14 +31,12 @@ class PokemonViewModel(context: Context) : BaseObservable(), Callback<JSONPokemo
     @Bindable
     fun getPokemonName(): String? {
         return MainActivity.pokemonViewModel?.name
-        notifyPropertyChanged(BR.name)
     }
 
     @Bindable
     fun getPokemonId(): String? {
         val id = MainActivity.pokemonViewModel?.id.toString()
         return "Pokemon ID: $id"
-        notifyPropertyChanged(BR.id)
     }
 
     fun onSearchClicked() {
